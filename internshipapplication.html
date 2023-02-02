@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Working Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  </head>
+<style>
+div{
+background-color:#01B075;
+font-family:Helvetica;
+font-size:15px;
+color: rgb(247, 250, 252);}
+
+.custom-select {
+  position: relative;
+  font-family: Arial;
+  display: inline-block;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: lightgreen;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.select-selected-bottom-rounded {
+  border-radius: 10px 10px 10px 10px;
+}
+
+.select-selected-bottom-square {
+  border-radius: 10px 10px 0px 0px;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 45%;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 25%;
+}
+
+/*set the styling and height for the list when the select box is open (active), the overflow-y property controls the scrolling:*/
+.select-items{
+  border-radius: 0px 0px 10px 10px;
+  height: 110px;
+  overflow-y: auto;
+  position: absolute;
+  background-color: yellow;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: black;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+}
+
+/* scrollbar width */
+.select-items::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* scrollbar track */
+.select-items::-webkit-scrollbar-track {
+  background:   rgb(162, 195, 162);
+  border-radius: 0px 0px 10px 0px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+/* scrollbar handle */
+.select-items::-webkit-scrollbar-thumb {
+  background: green;
+  border-radius: 10px; /* optional rounded handle */
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-image: -webkit-linear-gradient(45deg,
+	                                          rgba(255, 255, 255, .2) 25%,
+											  transparent 25%,
+											  transparent 50%,
+											  rgba(255, 255, 255, .2) 50%,
+											  rgba(255, 255, 255, .2) 75%,
+											  transparent 75%,
+											  transparent);
+}
+
+/* scrollbar handle on hover */
+.select-items::-webkit-scrollbar-thumb:hover {
+  background: lightgreen;
+  background-image: -webkit-linear-gradient(45deg,
+	                                          rgba(255, 255, 255, .2) 25%,
+											  transparent 25%,
+											  transparent 50%,
+											  rgba(255, 255, 255, .2) 50%,
+											  rgba(255, 255, 255, .2) 75%,
+											  transparent 75%,
+											  transparent);
+}
+
+
+</style>
+  <body style="font-size: 15px;">
+    <!-- form -->
+    <form action="#" >
+      <div class="main-form" style=" height:1150px; align-content: center; width: 740px; margin-left:auto; margin-right: auto; margin-top: 10px;padding-left: 76px; padding-right: 76px; padding-top: 28px; padding-bottom: 37px; ">
+        <!-- mandy -->
+        <div style="text-align:right; font-size:15px  ;">Mandatory Fields(*)</div>
+        <form action="#" >
+        <!-- personal detail -->
+        <div style="font-size:26px ; text-align: left;"><b>PERSONAL DETAILS </b></div>
+         <br>
+        <!-- tabele for form -->
+        <table style="margin-left:auto;margin-right:auto" >
+          <!-- name -->
+          <tr>
+            <td>
+              <label for="fn">First Name*</label><br>
+              <input type="text" id="fn" style="width:280px;margin-right:41px;">
+            </td>
+            <td>
+              <label for="ln">Last Name*</label><br>
+              <input type="text" id="ln" style="width:280px;margin-right:41px;">
+            </td>
+          </tr>
+
+          <!-- phone no -->
+          <tr>
+            <td>
+              <label for="Pn">Phone No.*</label><br>
+              <input type="tel" id="Pn" style="width:280px;margin-right:41px;">
+            </td>
+            <td>
+              <label for="APn">Alternate Phone No.</label><br>
+              <input type="tel" id="APn" style="width:280px;margin-right:41px;">
+            </td>
+          </tr>
+          
+          <!-- email id -->
+          <tr>
+            <td colspan="2">
+              <label for="email">E-Mail Id*</label><br>
+             <input type="email" id="email" style="width:600px ;" >
+            </td>
+          
+
+          </tr>
+          <tr>
+            <td>
+              <label for="address">Address*</label><br>
+              <textarea name="myText" cols="30" rows="3"></textarea></td>
+            
+          </tr>
+
+          <tr>
+            <td colspan="2">
+              <label for="resume">Resume*</label>
+              <input type="file" id="file" placeholder="upload from drive" style="width:600px;">(.pdf,.txt,.rtf,.docx,.doc files with a 2MB maximum file size are supported)
+            </td>
+           
+          </tr>
+          
+          <tr>
+            <td>
+             <input type="button" value="Upload">
+            </td>
+          </tr>
+        
+      
+          
+</table>
+
+  <!--Education Details-->
+<br>
+<table style="margin-left:auto; margin-right:auto">
+
+
+<!-- Educational detail -->
+<div style="font-size:26px ;"><b>EDUCATIONAL DETAILS</b></div>
+
+
+
+
+          <!-- college name -->
+          <tr>
+            <td class="one" colspan="2">
+              <label style="font-size: large; font-weight: bold; display: inline-block;">College Name*</label>
+               <br>
+             
+             <div class="custom-select" style="width:600px;"><select name="CN" id="CN">
+              
+              <option value="blank"> Select College</option>
+             
+              <option value="option1">Abhilashi University</option>
+              <option value="option2">Acharya N.G. Ranga Agricultural University</option>
+              <option value="option3">Acharya Nagarjuna University</option>
+              <option value="option4">Adamas University</option>
+              <option value="option5">Adesh University</option>
+              <option value="option6">Adikavi Nannaya University</option>
+              <option value="option7">Ahmedabad University</option>
+              <option value="option8">Ajeenkya D.Y. Patil University</option>
+              <option value="option9">Akal University</option>
+              <option value="option10">	AKS University</option>
+              <option value="option11">	Alagappa University</option>
+              <option value="option12">Amity University</option>
+              <option value="option13">Apeejay Stya University</option>
+              <option value="option13">APJ Abdul Kalam Technological University</option>
+              <option value="option13">	Assam University</option>
+              <option value="option13">	Birla Institute of Technology and Science</option>
+              <option value="option13">	Bodoland University</option>
+              <option value="option13">Bundelkhand University</option>
+              <option value="option13">	Central Institute of Fisheries Education</option>
+              <option value="option13">Central University of Haryana</option>
+              <option value="option13">Chaudhary Charan Singh University</option>
+              <option value="option13">Delhi University</option>
+              
+            
+             </select>
+             
+            </div>
+           
+            </td>
+          </tr>
+
+<!-- degree and percent -->
+<tr>
+  
+    <td>
+      <label for="Deg">Degree*</label><br>
+      
+     
+      <select name="Deg" id="Deg" style="width:180px ;margin-right:41px;height: 30px; margin-top: 0px;">
+        <option value="blank"></option>
+        
+        <option value="option1">B.Tech</option>
+        <option value="option1">BCA</option>
+        <option value="option2">BCOM</option>
+        <option value="option3">BA</option>
+        <option value="option4">MCA</option>
+        <option value="option5">B.Sc</option>
+        
+       </select><br>
+       
+       <td>
+        <label for="yer">Year of Completion*</label><br>
+        <input type="date" id="yer" style="width:280px;margin-right:41px;">
+      </td>
+
+    </td>
+      <tr>
+        <td>
+      
+     
+      <select name="Addn" id="edtn" style="width:160px ;margin-right:41px;height: 30px; margin-top: 0px;">
+        <option value="blank">Additional Ed. Detail</option>
+        <option value="option1">Diploma</option>
+        <option value="option2">10th</option>
+        <option value="option3">12th</option>
+        <option value="option4">M.Tech</option>
+        <option value="option4">MBA</option>
+        <option value="option4">Others</option>
+    
+        
+       </select>
+        </td>
+      </tr>   
+    
+    <tr>
+      <td>
+        <label for="Per">Percentage*</label><br>
+        <input type="text" id="per" style="width:280px ;margin-right:41px;">
+
+
+      </td>
+      <td>
+        <label for="cg">CGPA</label><br>
+        <input type="text" id="cg" style="width:280px;margin-right:41px;"/>
+      
+      </td>
+    </tr>
+   <tr>
+    <td>
+      
+      <button style="border: #01B075 1px dotted;" onclick="setInputValue()">Additional Ed. Detail</button>
+      
+    </td>
+   </tr>
+
+  </tr>
+
+</table>
+
+<br>
+<table style="margin-left:auto;margin-right:auto">
+
+
+
+<div style="font-size:26px ;"><b>INTERNSHIP DETAILS</b></div>
+
+<!--Internship Details-->
+
+
+ <!-- Previous working domain -->
+          <tr>
+            <td>
+              <label for="Prwd">Previous Working Domain (if any)</label><br>
+              <input type="text" id="prwd" style="width:280px ;margin-right:41px;">
+
+
+            </td>
+            <td>
+              <label for="Prsn">Previous Stipend</label><br>
+              <input type="number" id="prsn" style="width:280px;margin-right:41px;">
+            </td>
+          </tr>
+<!--company name-->
+  <tr>
+            <td colspan="2">
+              <label for="cn">Company Name</label><br>
+             <input type="text" id="cn" style="width:600px" >
+            </td>
+          </tr>
+      <tr>
+            <td>
+              <label for="ks">Key Skills</label><br>
+              
+              <input type="text" id="ks" style="width:280px ; height:70px;margin-right:41px;">
+              
+
+            </td>
+            <td>
+              <label for="years">Years Of experience</label><br>
+              <input type="number" id="prsn" style="width:280px;margin-right:41px;">
+              <label for="loc">Preffered Job Location</label>
+              
+              <select name="loc" id="loc" style="width:180px ;margin-right:41px;height: 25px; margin-top: 0px;">
+        <option value="blank"></option>
+        
+        <option value="option1">Delhi-NCR</option>
+        <option value="option1">Jaipur</option>
+
+        <option value="option1">Banglore</option>
+        <option value="option2">Chandigarh</option>
+        <option value="option3">Chennai</option>
+        <option value="option4">Mumbai</option>
+        <option value="option5">Pune</option>
+        
+       </select>
+      
+            </td>
+        
+            <tr>
+              <td>
+                <button style="border: #01B075 1px dotted;">Additional Internship Detail</button>
+              </td>
+            </tr>
+          </tr>
+
+           
+           
+
+
+
+
+
+
+
+
+
+        </table>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Apply" style="margin-left:926px  ; margin-top:12px; font-family:sans-serif;  font-size: 16px; width: 90px;border-radius: 2px ;">
+</form>
+
+
+      
+
+    <!-- script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+     <script>
+    var x, i, j, l, ll, selElmnt, a, b, c;
+/*look for any elements with the class "custom-select":*/
+x = document.getElementsByClassName("custom-select");
+l = x.length;
+for (i = 0; i < l; i++) {
+  selElmnt = x[i].getElementsByTagName("select")[0];
+  ll = selElmnt.length;
+  /*for each element, create a new DIV that will act as the selected item:*/
+  a = document.createElement("DIV");
+  a.setAttribute("class", "select-selected select-selected-bottom-rounded");
+  a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+  x[i].appendChild(a);
+  /*for each element, create a new DIV that will contain the option list:*/
+  b = document.createElement("DIV");
+  b.setAttribute("class", "select-items select-hide");
+  for (j = 1; j < ll; j++) {
+    /*for each option in the original select element,
+    create a new DIV that will act as an option item:*/
+    c = document.createElement("DIV");
+    c.innerHTML = selElmnt.options[j].innerHTML;
+    c.addEventListener("click", function(e) {
+        /*when an item is clicked, update the original select box,
+        and the selected item:*/
+        var y, i, k, s, h, sl, yl;
+        s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+        sl = s.length;
+        h = this.parentNode.previousSibling;
+        for (i = 0; i < sl; i++) {
+          if (s.options[i].innerHTML == this.innerHTML) {
+            s.selectedIndex = i;
+            h.innerHTML = this.innerHTML;
+            y = this.parentNode.getElementsByClassName("same-as-selected");
+            yl = y.length;
+            for (k = 0; k < yl; k++) {
+              y[k].removeAttribute("class");
+            }
+            this.setAttribute("class", "same-as-selected");
+            break;
+          }
+        }
+        h.click();
+    });
+    b.appendChild(c);
+  }
+  x[i].appendChild(b);
+  a.addEventListener("click", function(e) {
+      /*when the select box is clicked, close any other select boxes,
+      and open/close the current select box:*/
+      e.stopPropagation();
+      closeAllSelect(this);
+      this.nextSibling.classList.toggle("select-hide");
+      this.classList.toggle("select-arrow-active");
+      this.classList.toggle("select-selected-bottom-square");
+    });
+}
+function closeAllSelect(elmnt) {
+  /*a function that will close all select boxes in the document,
+  except the current select box:*/
+  var x, y, i, xl, yl, arrNo = [];
+  x = document.getElementsByClassName("select-items");
+  y = document.getElementsByClassName("select-selected");
+  xl = x.length;
+  yl = y.length;
+  for (i = 0; i < yl; i++) {
+    if (elmnt == y[i]) {
+      arrNo.push(i)
+    } else {
+      y[i].classList.remove("select-arrow-active");
+      y[i].classList.remove("select-selected-bottom-square");
+    }
+  }
+  for (i = 0; i < xl; i++) {
+    if (arrNo.indexOf(i)) {
+      x[i].classList.add("select-hide");
+    }
+  }
+}
+/*if the user clicks anywhere outside the select box,
+then close all select boxes:*/
+document.addEventListener("click", closeAllSelect);
+     </script>
+
+  </body>
+</html>
