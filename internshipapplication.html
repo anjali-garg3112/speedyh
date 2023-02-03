@@ -24,6 +24,7 @@ color: rgb(247, 250, 252);}
 }
 
 .select-selected {
+  
   background-color: lightgreen;
   border-radius: 10px 10px 0px 0px;
 }
@@ -60,16 +61,18 @@ color: rgb(247, 250, 252);}
   height: 110px;
   overflow-y: auto;
   position: absolute;
-  background-color: yellow;
+  
   top: 100%;
   left: 0;
   right: 0;
   z-index: 99;
+  margin-top: 37px;
 }
 
 /*style the items (options), including the selected item:*/
 .select-items div,.select-selected {
   color: black;
+  background-color:yellow;
   padding: 8px 16px;
   border: 1px solid transparent;
   border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
@@ -126,13 +129,38 @@ color: rgb(247, 250, 252);}
 											  transparent 75%,
 											  transparent);
 }
+.search-box input{
+  width: 600px;
+  padding: 3px 4px;
+  font-size: 16px;
+  position:absolute;
+  border-radius: 8px 8px 0 0;
+  z-index: 100;
+  border: 2px solid #2f3640;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s;
+  
+}
+
+.search-box input:focus{
+  outline: none;
+}
+
+.custom-select .select-items ~ .search-box input{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+
 
 
 </style>
   <body style="font-size: 15px;">
     <!-- form -->
     <form action="#" >
-      <div class="main-form" style=" height:1150px; align-content: center; width: 740px; margin-left:auto; margin-right: auto; margin-top: 10px;padding-left: 76px; padding-right: 76px; padding-top: 28px; padding-bottom: 37px; ">
+      <div class="main-form" style=" height:1190px; align-content: center; width: 740px; margin-left:auto; margin-right: auto; margin-top: 10px;padding-left: 76px; padding-right: 76px; padding-top: 28px; padding-bottom: 37px; ">
         <!-- mandy -->
         <div style="text-align:right; font-size:15px  ;">Mandatory Fields(*)</div>
         <form action="#" >
@@ -205,13 +233,13 @@ color: rgb(247, 250, 252);}
 
 
 <!-- Educational detail -->
-<div style="font-size:26px ;"><b>EDUCATIONAL DETAILS</b></div>
+<div style="font-size:26px ; height: 10px;"><b>EDUCATIONAL DETAILS</b></div>
 
 
 
 
           <!-- college name -->
-          <tr>
+          <tr style="height:130px;" >
             <td class="one" colspan="2">
               <label style="font-size: large; font-weight: bold; display: inline-block;">College Name*</label>
                <br>
@@ -219,7 +247,7 @@ color: rgb(247, 250, 252);}
              <div class="custom-select" style="width:600px;"><select name="CN" id="CN">
               
               <option value="blank"> Select College</option>
-             
+             <div class="select-items">
               <option value="option1">Abhilashi University</option>
               <option value="option2">Acharya N.G. Ranga Agricultural University</option>
               <option value="option3">Acharya Nagarjuna University</option>
@@ -241,11 +269,15 @@ color: rgb(247, 250, 252);}
               <option value="option13">	Central Institute of Fisheries Education</option>
               <option value="option13">Central University of Haryana</option>
               <option value="option13">Chaudhary Charan Singh University</option>
-              <option value="option13">Delhi University</option>
+              <option value="option13">Delhi University</option></div>
               
             
              </select>
+
              
+            </div>
+            <div class="search-box">
+              <input type="text" placeholder="Start typing">
             </div>
            
             </td>
@@ -407,6 +439,7 @@ color: rgb(247, 250, 252);}
     <!-- script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
      <script>
+      const seachBox = document.querySelector(".search-box input");
     var x, i, j, l, ll, selElmnt, a, b, c;
 /*look for any elements with the class "custom-select":*/
 x = document.getElementsByClassName("custom-select");
@@ -487,6 +520,22 @@ function closeAllSelect(elmnt) {
 /*if the user clicks anywhere outside the select box,
 then close all select boxes:*/
 document.addEventListener("click", closeAllSelect);
+seachBox.addEventListener("keyup",function(e){
+ filterList(e.target.value);
+});
+const filterList = searchTerm =>{
+   searchTerm = searchTerm.toLowerCase();
+   optionList.forEach(option =>{
+     let label = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
+     if(label.indexOf(searchTerm) != -1){
+      option.style.display = "block"; 
+     }else{
+      option.style.display = "none"; 
+      
+     }
+
+   });
+};
      </script>
 
   </body>
